@@ -1,15 +1,3 @@
-/**
-* Template Name: AgriCulture
-* Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -17,41 +5,39 @@
   --nav-font: "Marcellus",  sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #294630; /* Background color for the entire website, including individual sections */
-  --default-color: #050505; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #283120; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #000703; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+/* TEMA DARK */
+:root, :root[data-theme='dark'] {
+  --texto-color: #f0f0f0;  /*cor principal Textos*/
+  --background-color: #1a2a22;  /*cor principal Fundo*/ 
+  /* bg = background == cor do Fundo */
+  --secondary-bg-color: #28292E;  
+  --primary-border-color: #28292E;
+  --secondary-border-color: #c1c2c4;
+  --title-color: #F0F0F0;
+  
+  --link-color: #ffffff;
+  --link-hover: #f8fbca;;
+
+  --icon-color: #C7C8C9;
+}
+/* TEMA LIGHT */
+:root[data-theme='light'] {
+  --primary-color: #0d0c09; /* cor principal textos */
+
+  --primary-bg-color: #f0f2f5;
+  --secondary-bg-color: #C7C8C9;
+
+  --primary-border-color: #C7C8C9;
+--secondary-border-color: #9A9A9C;
+
+--title-color: #0B0B0F;
+--link-hover: #a3a2a2;
+--link-color: #0B0B0F;
+--icon-color: #56575A;
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
-:root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color:#f8fbca; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #116530; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
-}
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
-.light-background {
-  --background-color: #f9f9f9;
-  --surface-color: #ffffff;
-}
-
-.dark-background {
-  --background-color: #060606;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --accent-color: #2ea359;
-  --surface-color: #252525;
-  --contrast-color: #ffffff;
-}
 
 /* Smooth scroll */
 :root {
@@ -62,19 +48,19 @@
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
-  color: var(--default-color);
+  color: var(--texto-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
 }
 
 a {
-  color: var(--accent-color);
+  color: var(--link-hover);
   text-decoration: none;
   transition: 0.3s;
 }
 
 a:hover {
-  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  color: color-mix(in srgb, var(--link-hover), transparent 25%);
   text-decoration: none;
 }
 
@@ -85,8 +71,24 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--heading-color);
-  font-family: var(--heading-font);
+  color: var(--texto-color);
+  font-family: var(--texto-color);
+}
+
+
+html[data-theme='light'] .logo {
+  filter: invert(1);
+}
+
+
+
+#toggleTheme {
+  font-size: 1.5rem; 
+  color: var(--icon-color);
+  cursor: pointer;
+  transition: ease-in-out .4s;
+  float: right;
+  position: relative;
 }
 span{
   color: #f8fbca;
@@ -112,9 +114,32 @@ span{
 
 .educacao .texto {
   max-width: 50%;
+  height: 20rem;
+}
+
+.fome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.tema{
+  color: #f8fbca;
+}
+
+.fome img {
+  max-width: 30%
+ 
+}
+.fome img{
+  border-radius: 20%;
 }
 
 
+.fome .texto {
+  max-width: 50%;
+  height: 20rem;
+}
 
 
 
@@ -332,63 +357,8 @@ span{
   .navmenu .active:focus {
     color: var(--nav-hover-color);
   }
-
-  .navmenu .dropdown ul {
-    margin: 0;
-    padding: 10px 0;
-    background: var(--nav-dropdown-background-color);
-    display: block;
-    position: absolute;
-    visibility: hidden;
-    left: 14px;
-    top: 130%;
-    opacity: 0;
-    transition: 0.3s;
-    border-radius: 4px;
-    z-index: 99;
-    box-shadow: 0px 0px 30px color-mix(in srgb, var(--default-color), transparent 85%);
-  }
-
-  .navmenu .dropdown ul li {
-    min-width: 200px;
-  }
-
-  .navmenu .dropdown ul a {
-    padding: 10px 20px;
-    font-size: 15px;
-    text-transform: none;
-    color: var(--nav-dropdown-color);
-  }
-
-  .navmenu .dropdown ul a i {
-    font-size: 12px;
-  }
-
-  .navmenu .dropdown ul a:hover,
-  .navmenu .dropdown ul .active:hover,
-  .navmenu .dropdown ul li:hover>a {
-    color: var(--nav-dropdown-hover-color);
-  }
-
-  .navmenu .dropdown:hover>ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-  }
-
-  .navmenu .dropdown .dropdown ul {
-    top: 0;
-    left: -90%;
-    visibility: hidden;
-  }
-
-  .navmenu .dropdown .dropdown:hover>ul {
-    opacity: 1;
-    top: 0;
-    left: -100%;
-    visibility: visible;
-  }
 }
+  
 
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
@@ -414,85 +384,15 @@ span{
     padding: 10px 0;
     margin: 0;
     border-radius: 6px;
-    background-color: var(--nav-mobile-background-color);
+    background-color:var(--background-color);
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
-    box-shadow: 0px 0px 30px color-mix(in srgb, var(--default-color), transparent 90%);
+    
   }
 
-  .navmenu a,
-  .navmenu a:focus {
-    color: var(--nav-dropdown-color);
-    padding: 10px 20px;
-    font-family: var(--nav-font);
-    font-size: 17px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
-    transition: 0.3s;
-  }
+  
 
-  .navmenu a i,
-  .navmenu a:focus i {
-    font-size: 12px;
-    line-height: 0;
-    margin-left: 5px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: 0.3s;
-    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
-  }
-
-  .navmenu a i:hover,
-  .navmenu a:focus i:hover {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-  }
-
-  .navmenu a:hover,
-  .navmenu .active,
-  .navmenu .active:focus {
-    color: var(--nav-dropdown-hover-color);
-  }
-
-  .navmenu .active i,
-  .navmenu .active:focus i {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-    transform: rotate(180deg);
-  }
-
-  .navmenu .dropdown ul {
-    position: static;
-    display: none;
-    z-index: 99;
-    padding: 10px 0;
-    margin: 10px 20px;
-    background-color: var(--nav-dropdown-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    box-shadow: none;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .navmenu .dropdown ul ul {
-    background-color: rgba(33, 37, 41, 0.1);
-  }
-
-  .navmenu .dropdown>.dropdown-active {
-    display: block;
-    background-color: rgba(33, 37, 41, 0.03);
-  }
-
-  .mobile-nav-active {
-    overflow: hidden;
-  }
 
   .mobile-nav-active .mobile-nav-toggle {
     color: #fff;
@@ -816,6 +716,7 @@ section,
   color: #ffffff;
 }
 
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -867,8 +768,11 @@ section,
   align-items: center;
   flex-direction: column;
   z-index: 3;
-}
 
+}
+.hero .carousel-container p{
+font-size: 23px;
+}
 .hero h2 {
   margin-bottom: 30px;
   font-size: 48px;
@@ -895,9 +799,9 @@ section,
 }
 
 .hero .btn-get-started {
-  color: var(--contrast-color);
+  color: var(--texto-color);
   background: var(--accent-color);
-  font-family: var(--heading-font);
+  font-family: var(--texto-color);
   font-weight: 500;
   font-size: 15px;
   letter-spacing: 1px;
@@ -1444,10 +1348,47 @@ section,
   left: calc(50% - 47px);
   top: calc(50% - 47px);
 }
+/* saude*/
+
  .saude img{
   border-radius: 20%;
   width: 30%;
+  float: right;
+  
+  
  }
+ .saude h1{
+text-align: left;
+margin-left: 15%;
+color: #f8fbca;
+
+ }
+ .saude h2 p{
+  float: left;
+  
+ 
+  
+ }
+ .saude p{
+ font-size: 90%;
+ width: 30rem;
+ height: 20rem;
+ }
+/* onde a saude atua*/
+.atua-saude {
+  float: left;
+  width: 30rem;
+  height: 30rem;
+  
+}
+.atua-saude h2{
+  padding-top: 1.5px;
+}
+
+
+
+
+ 
 /*--------------------------------------------------------------
 # Team Section
 --------------------------------------------------------------*/

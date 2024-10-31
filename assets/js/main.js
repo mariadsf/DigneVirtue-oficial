@@ -1,13 +1,11 @@
-/**
-* Template Name: AgriCulture
-* Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
+
+
 
 (function() {
   "use strict";
+
+
 
   /**
    * Apply .scrolled class to the body as the page is scrolled down
@@ -165,3 +163,24 @@
   });
 
 })();
+
+/* 
+Alterar cor do tema 
+ */
+  
+const toggleTheme = document.getElementById("toggleTheme");
+const rootHtml = document.documentElement;
+
+//função para alternar o tema 
+function changeTheme () {
+    const currentTheme = rootHtml.getAttribute("data-theme");
+
+    currentTheme === "dark" ? rootHtml.setAttribute("data-theme", "light") : rootHtml.setAttribute("data-theme", "dark");
+
+    toggleTheme.classList.toggle("bi-sun");
+    toggleTheme.classList.toggle("bi-moon-stars");
+
+} 
+
+toggleTheme.addEventListener("click", changeTheme);
+//fim da função mudar o tema
